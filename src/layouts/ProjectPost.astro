@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, description, role, platforms, genre, coverImage, externalUrl, category, draft } =
+const { title, description, role, platforms, genre, coverImage, video, externalUrl, category, draft } =
 	project.data;
 
 const categoryLabels: Record<string, string> = {
@@ -22,7 +22,19 @@ const categoryLabel = categoryLabels[category] ?? category;
 	<article class="grow break-words" data-pagefind-body>
 		<div id="project-hero" class="mb-12">
 			{
-				coverImage && (
+				video && (
+					<div class="mb-6 aspect-video overflow-hidden rounded">
+						<video
+							src={video}
+							class="h-full w-full object-cover"
+							controls
+							preload="metadata"
+						/>
+					</div>
+				)
+			}
+			{
+				!video && coverImage && (
 					<div class="mb-6 aspect-video overflow-hidden rounded">
 						<img
 							alt={coverImage.alt}
@@ -66,7 +78,7 @@ const categoryLabel = categoryLabels[category] ?? category;
 			}
 		</div>
 		<div
-			class="prose prose-sm prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-muted prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
+			class="prose prose-sm max-w-none prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-muted prose-headings:hover:before:text-accent sm:prose-headings:before:content-['#'] sm:prose-th:before:content-none"
 		>
 			<slot />
 		</div>

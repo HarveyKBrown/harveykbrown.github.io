@@ -71,6 +71,7 @@ const project = defineCollection({
 				src: z.string(),
 			})
 			.optional(),
+		video: z.string().optional(),
 		externalUrl: z.string().url().optional(),
 		draft: z.boolean().default(false),
 		order: z.number().int().optional(),
