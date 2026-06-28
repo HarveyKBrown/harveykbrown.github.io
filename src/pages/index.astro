@@ -1,84 +1,416 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import PostPreview from "@/components/blog/PostPreview.astro";
-import Note from "@/components/note/Note.astro";
-import SocialList from "@/components/SocialList.astro";
-import { getAllPosts } from "@/data/post";
+import { Icon } from "astro-icon/components";
 import PageLayout from "@/layouts/Base.astro";
-import { collectionDateSort } from "@/utils/date";
 
-// Posts
-const MAX_POSTS = 10;
-const allPosts = await getAllPosts();
-const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
-const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
-
-// Pinned Posts, set to a max of 3;
-const MAX_PINNED_POSTS = 3;
-const pinnedPosts = allPostsByDate
-	.values()
-	.filter((p) => p.data.pinned)
-	.take(MAX_PINNED_POSTS)
-	.toArray();
-
-// Notes, set to a max of 5
-const MAX_NOTES = 5;
-const allNotes = await getCollection("note");
-const latestNotes = allNotes
-	.sort(collectionDateSort)
-	.slice(0, MAX_NOTES) as CollectionEntry<"note">[];
+const meta = {
+	description: "Video Game Design portfolio for Harvey Brown — Senior Game Designer",
+	title: "Harvey Brown",
+};
 ---
 
-<PageLayout meta={{ title: "Home" }}>
-	<section>
-		<h1 class="title mb-12">Hello World!</h1>
-		<p class="mb-4">
-			Hi, I’m a theme for Astro, a simple starter that you can use to create your website or blog.
-			If you want to know more about how you can customise me, add more posts, and make it your own,
-			click on the GitHub icon link below and it will take you to my repo.
-		</p>
-		<SocialList />
-	</section>
-	{
-		pinnedPosts.length > 0 && (
-			<section class="mt-16">
-				<h2 class="title mb-6 text-xl">Pinned Posts</h2>
-				<ul class="space-y-4" role="list">
-					{pinnedPosts.map((p) => (
-						<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-							<PostPreview post={p} />
-						</li>
-					))}
-				</ul>
-			</section>
-		)
+<style>
+	summary::-webkit-details-marker {
+		display: none;
 	}
+	.rec-snippet,
+	.rec-quote {
+		position: relative;
+		padding-left: 1.6em;
+	}
+	.rec-snippet::before,
+	.rec-quote::before {
+		content: '"';
+		position: absolute;
+		left: 0;
+		top: -0.1em;
+		font-size: 2.8em;
+		line-height: 0.75;
+		font-family: inherit;
+		font-weight: 700;
+		color: var(--color-muted);
+	}
+</style>
+
+<PageLayout meta={meta}>
+	<!-- Hero -->
+	<section class="mb-8">
+		<p class="mb-1 text-lg">Senior Game Designer</p>
+		<p class="text-muted">Technical &times; Gameplay &times; Systems</p>
+	</section>
+
+	<!-- Accolades -->
+	<section aria-label="Career highlights" class="mt-8 grid grid-cols-3 gap-4 text-center">
+		<div>
+			<span class="title block text-4xl">7+</span>
+			<span class="text-muted mt-1 block text-sm">Years of Game Design</span>
+		</div>
+		<div>
+			<span class="title block text-4xl">8+</span>
+			<span class="text-muted mt-1 block text-sm">Games &amp; Expansions Shipped</span>
+		</div>
+		<div>
+			<span class="title block text-4xl">200m+</span>
+			<span class="text-muted mt-1 block text-sm">Players Reached</span>
+		</div>
+	</section>
+
+	<!-- Bio -->
+	<div
+		class="prose prose-sm prose-cactus border-quote/30 mt-8 max-w-none rounded border border-dashed p-4"
+	>
+		<p>
+			I'm a Senior Game Designer with a cross-disciplinary background spanning Systems, Game, and
+			Technical Design — with the technical experience to go hands-on across 3D, VFX, graphics
+			programming, and software engineering when a project calls for it.
+		</p>
+		<p>
+			I've led feature and prototyping teams, served as product owner for major gameplay systems and
+			original titles, and shipped best-selling games across PC, Console, Mobile, and VR.
+		</p>
+		<p>
+			At the core of my work is a drive to create experiences with intuitive gameplay, compelling
+			core loops, deep mechanical depth, and a distinctive charm.
+		</p>
+	</div>
+
+	<!-- Recommendations -->
 	<section class="mt-16">
-		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Posts</a></h2>
-		<ul class="space-y-4" role="list">
-			{
-				latestPosts.map((p) => (
-					<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-						<PostPreview post={p} />
-					</li>
-				))
-			}
+		<h2 class="title mb-6 text-xl">Recommendations</h2>
+		<ul class="space-y-6" role="list">
+			<li class="border-quote/35 hover:border-accent/60 rounded border p-4 transition-colors duration-200">
+				<details class="group">
+					<summary class="cursor-pointer list-none">
+						<div class="flex items-baseline gap-2">
+							<a
+								class="cactus-link font-semibold"
+								href="https://www.linkedin.com/in/steven-bristow-38a29b1/"
+								rel="noreferrer noopener"
+								target="_blank">Steven Bristow</a
+							>
+							<span class="text-muted text-sm">Design Director · Rebellion, Rockstar</span>
+							<Icon
+								aria-hidden="true"
+								class="text-accent ml-auto h-5 w-5 shrink-0 transition-transform duration-200 group-open:rotate-180"
+								focusable="false"
+								name="mdi:chevron-down"
+							/>
+						</div>
+						<p class="rec-snippet text-muted mt-2 text-sm leading-relaxed group-open:hidden">
+							A prolific and tireless designer with great creative range and a positive attitude
+							towards feedback and iteration.
+						</p>
+					</summary>
+					<blockquote class="rec-quote text-muted mt-4 space-y-3 text-sm leading-relaxed">
+						<p>
+							A prolific and tireless designer with great creative range and a positive attitude
+							towards feedback and iteration. Harvey was directly responsible for designing and
+							documenting large chunks of the complex system design of our project and he delivered
+							repeatedly to a very high standard. He took initiatives in developing meaningful
+							prototypes and adapted well to the large changes that the game underwent during
+							development. Furthermore, when called upon to lead sub-team initiatives, he rose to
+							the challenge admirably and delivered on some very challenging goals. An asset to any
+							team that prizes independent, self-motivated creators.
+						</p>
+					</blockquote>
+				</details>
+			</li>
+
+			<li class="border-quote/35 hover:border-accent/60 rounded border p-4 transition-colors duration-200">
+				<details class="group">
+					<summary class="cursor-pointer list-none">
+						<div class="flex items-baseline gap-2">
+							<a
+								class="cactus-link font-semibold"
+								href="https://www.linkedin.com/in/louisekasemeier/"
+								rel="noreferrer noopener"
+								target="_blank">Louise Kasemeier</a
+							>
+							<span class="text-muted text-sm">Production Director · Blizzard, Team17</span>
+							<Icon
+								aria-hidden="true"
+								class="text-accent ml-auto h-5 w-5 shrink-0 transition-transform duration-200 group-open:rotate-180"
+								focusable="false"
+								name="mdi:chevron-down"
+							/>
+						</div>
+						<p class="rec-snippet text-muted mt-2 text-sm leading-relaxed group-open:hidden">
+							A top tier System Designer with huge potential.
+						</p>
+					</summary>
+					<blockquote class="rec-quote text-muted mt-4 space-y-3 text-sm leading-relaxed">
+						<p>
+							I worked with Harvey at nDreams Orbital for 2 years. Harvey is a top tier System
+							Designer with huge potential. He would be an asset to any game project with complex
+							systems and/or game economy.
+						</p>
+						<p>
+							Harvey is a thoughtful problem-solver who excels at iterating on and polishing
+							interrelated gameplay mechanics until they sparkle! He's also an flexible and
+							collaborative member of the team, working effectively with other game dev disciplines
+							to find the fun.
+						</p>
+						<p>
+							I have no hesitation in recommending Harvey to any studio seeking a Senior Game or
+							System Designer.
+						</p>
+					</blockquote>
+				</details>
+			</li>
+
+			<li class="border-quote/35 hover:border-accent/60 rounded border p-4 transition-colors duration-200">
+				<details class="group">
+					<summary class="cursor-pointer list-none">
+						<div class="flex items-baseline gap-2">
+							<a
+								class="cactus-link font-semibold"
+								href="https://www.linkedin.com/in/emma-goss/"
+								rel="noreferrer noopener"
+								target="_blank">Emma Goss</a
+							>
+							<span class="text-muted text-sm">QA Tester · Aonic, nDreams</span>
+							<Icon
+								aria-hidden="true"
+								class="text-accent ml-auto h-5 w-5 shrink-0 transition-transform duration-200 group-open:rotate-180"
+								focusable="false"
+								name="mdi:chevron-down"
+							/>
+						</div>
+						<p class="rec-snippet text-muted mt-2 text-sm leading-relaxed group-open:hidden">
+							Exceptionally talented... his skills across feature, systems and AI work is exemplary
+						</p>
+					</summary>
+					<blockquote class="rec-quote text-muted mt-4 space-y-3 text-sm leading-relaxed">
+						<p>
+							Harvey is a top tier designer who is exceptionally talented. I have had the pleasure
+							of working alongside him on Studio Orbital and Compass.
+						</p>
+						<p>
+							Harvey excels at getting to the root cause of an issue and produces a polished fix.
+							His skills across feature, systems and AI work is exemplary and is always
+							well-implemented into builds. He backs up his plethora of skills by creating design
+							documents on Confluence, which has helped me understand the intended behaviours of
+							features on multiple occasions. He collaborates with other disciplines effectively and
+							is fantastic to communicate with.
+						</p>
+						<p>
+							I feel very fortunate to have worked with Harvey on multiple projects and prototypes.
+							He is incredibly clever with a high degree of design skills.
+						</p>
+					</blockquote>
+				</details>
+			</li>
+
+			<li class="border-quote/35 hover:border-accent/60 rounded border p-4 transition-colors duration-200">
+				<details class="group">
+					<summary class="cursor-pointer list-none">
+						<div class="flex items-baseline gap-2">
+							<a
+								class="cactus-link font-semibold"
+								href="https://www.linkedin.com/in/ian-bailey-96a5a321a/"
+								rel="noreferrer noopener"
+								target="_blank">Ian Bailey</a
+							>
+							<span class="text-muted text-sm">Audio Designer · nDreams, Mixdown Media</span>
+							<Icon
+								aria-hidden="true"
+								class="text-accent ml-auto h-5 w-5 shrink-0 transition-transform duration-200 group-open:rotate-180"
+								focusable="false"
+								name="mdi:chevron-down"
+							/>
+						</div>
+						<p class="rec-snippet text-muted mt-2 text-sm leading-relaxed group-open:hidden">
+							A problem that might seem nearly impossible for most, he is able to solve in minutes.
+						</p>
+					</summary>
+					<blockquote class="rec-quote text-muted mt-4 space-y-3 text-sm leading-relaxed">
+						<p>
+							If I had to honestly describe Harvey in one word, it would have to be "genius". There
+							have been several occasions when working together that I have told him and other
+							colleagues this multiple times. His level of mathematical knowledge truly astounds me,
+							and a problem that might seem nearly impossible for most, he is able to solve in
+							minutes with a clean and powerful solution.
+						</p>
+						<p>
+							Using his technical and coding ability, he combines this with his creativity to create
+							absolutely phenomenal results. Whenever Harvey is put on to a project I am always
+							excited to work on it knowing there will be solid mechanics he created in code making
+							the whole team's job easier. There have been countless occasions I've been completely
+							in awe of his skills. He has created a plethora of documentation explaining all of his
+							work clearly, which has been critical for several projects. He has a level of
+							confidence whenever demonstrating work to the entire team that only comes with such a
+							high degree of skill and talent. I'm very fortunate to have had the opportunity to
+							work together.
+						</p>
+					</blockquote>
+				</details>
+			</li>
 		</ul>
 	</section>
-	{
-		latestNotes.length > 0 && (
-			<section class="mt-16">
-				<h2 class="title text-accent mb-6 text-xl">
-					<a href="/notes/">Notes</a>
-				</h2>
-				<ul class="space-y-6" role="list">
-					{latestNotes.map((note) => (
-						<li>
-							<Note note={note} as="h3" isPreview />
-						</li>
-					))}
-				</ul>
-			</section>
-		)
-	}
+
+	<!-- Projects CTA -->
+	<div class="mt-16 text-center">
+		<a
+			class="border-accent text-accent hover:bg-accent hover:text-global-bg inline-block rounded border-2 px-6 py-3 font-semibold transition-colors duration-200"
+			href="/projects/"
+		>
+			View My Projects <span aria-hidden="true">→</span>
+		</a>
+	</div>
+
+	<!-- Skills -->
+	<section class="mt-16">
+		<h2 class="title mb-6 text-xl">Skills</h2>
+		<dl class="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
+			<div>
+				<dt class="text-accent-2 mb-2 font-semibold">Platforms</dt>
+				<dd class="flex flex-wrap gap-1.5">
+					{
+						["PC", "Console", "VR", "Mobile"].map((s) => (
+							<span class="bg-quote/10 border-quote/25 rounded border px-2 py-0.5 text-sm">
+								{s}
+							</span>
+						))
+					}
+				</dd>
+			</div>
+			<div>
+				<dt class="text-accent-2 mb-2 font-semibold">Engines</dt>
+				<dd class="flex flex-wrap gap-1.5">
+					{
+						["Unreal Engine", "Unity", "Godot", "Proprietary"].map((s) => (
+							<span class="bg-quote/10 border-quote/25 rounded border px-2 py-0.5 text-sm">
+								{s}
+							</span>
+						))
+					}
+				</dd>
+			</div>
+			<div>
+				<dt class="text-accent-2 mb-2 font-semibold">Code</dt>
+				<dd class="flex flex-wrap gap-1.5">
+					{
+						["C++", "C#", "Python", "Shaders (GLSL/HLSL)"].map((s) => (
+							<span class="bg-quote/10 border-quote/25 rounded border px-2 py-0.5 text-sm">
+								{s}
+							</span>
+						))
+					}
+				</dd>
+			</div>
+			<div>
+				<dt class="text-accent-2 mb-2 font-semibold">Design</dt>
+				<dd class="flex flex-wrap gap-1.5">
+					{
+						[
+							"Technical Design",
+							"Economy & Systems Design",
+							"Combat Design",
+							"Live Service",
+							"Free to Play",
+						].map((s) => (
+							<span class="bg-quote/10 border-quote/25 rounded border px-2 py-0.5 text-sm">
+								{s}
+							</span>
+						))
+					}
+				</dd>
+			</div>
+			<div>
+				<dt class="text-accent-2 mb-2 font-semibold">Tools</dt>
+				<dd class="flex flex-wrap gap-1.5">
+					{
+						["Figma", "Blender", "Perforce", "Git"].map((s) => (
+							<span class="bg-quote/10 border-quote/25 rounded border px-2 py-0.5 text-sm">
+								{s}
+							</span>
+						))
+					}
+				</dd>
+			</div>
+			<div>
+				<dt class="text-accent-2 mb-2 font-semibold">Data</dt>
+				<dd class="flex flex-wrap gap-1.5">
+					{
+						["SQL", "Grafana", "Kibana"].map((s) => (
+							<span class="bg-quote/10 border-quote/25 rounded border px-2 py-0.5 text-sm">
+								{s}
+							</span>
+						))
+					}
+				</dd>
+			</div>
+			<div class="sm:col-span-2">
+				<dt class="text-accent-2 mb-2 font-semibold">Specialisms</dt>
+				<dd class="flex flex-wrap gap-1.5">
+					{
+						[
+							"Character Controllers",
+							"AI Behaviours",
+							"Interactions",
+							"Emergent Sandboxes",
+							"Physics Systems",
+							"Simulation",
+							"Animation Controllers",
+							"UX",
+							"Systems Engineering",
+							"Rapid Prototyping",
+							"Product Ownership",
+						].map((s) => (
+							<span class="bg-quote/10 border-quote/25 rounded border px-2 py-0.5 text-sm">
+								{s}
+							</span>
+						))
+					}
+				</dd>
+			</div>
+		</dl>
+	</section>
+
+	<!-- Contact -->
+	<section class="mt-16">
+		<h2 class="title mb-6 text-xl">Contact</h2>
+		<ul class="flex flex-wrap gap-6">
+			<li>
+				<a
+					class="hover:text-link flex flex-col items-center gap-1"
+					href="https://www.linkedin.com/in/harveykbrown/"
+					rel="noreferrer noopener"
+					target="_blank"
+				>
+					<Icon aria-hidden="true" class="h-8 w-8" focusable="false" name="mdi:linkedin" />
+					<span class="text-sm">LinkedIn</span>
+				</a>
+			</li>
+			<li>
+				<a
+					class="hover:text-link flex flex-col items-center gap-1"
+					href="https://github.com/HarveyKBrown"
+					rel="noreferrer noopener"
+					target="_blank"
+				>
+					<Icon aria-hidden="true" class="h-8 w-8" focusable="false" name="mdi:github" />
+					<span class="text-sm">GitHub</span>
+				</a>
+			</li>
+			<li>
+				<a
+					class="hover:text-link flex flex-col items-center gap-1"
+					href="mailto:harveykbrown+portfolio@protonmail.com"
+				>
+					<Icon aria-hidden="true" class="h-8 w-8" focusable="false" name="mdi:email" />
+					<span class="text-sm">Email</span>
+				</a>
+			</li>
+			<li>
+				<a
+					class="hover:text-link flex flex-col items-center gap-1"
+					href="/harvey-brown-cv.pdf"
+					download
+				>
+					<Icon aria-hidden="true" class="h-8 w-8" focusable="false" name="mdi:file-download" />
+					<span class="text-sm">Download CV</span>
+				</a>
+			</li>
+		</ul>
+	</section>
 </PageLayout>

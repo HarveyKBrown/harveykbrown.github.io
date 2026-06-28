@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	project: CollectionEntry<"project">;
+}
+
+const { project } = Astro.props;
+const { title, description, platforms, genre, coverImage, draft } = project.data;
+const href = `/projects/${project.id}/`;
+---
+
+<article class="bg-quote/5 border-quote/20 hover:border-accent/60 flex h-full flex-col overflow-hidden rounded border transition-colors duration-200">
+	<a href={href} class="block">
+		{
+			coverImage ? (
+				<div class="aspect-[8/3] overflow-hidden">
+					<img
+						alt={coverImage.alt}
+						src={coverImage.src}
+						class="h-full w-full object-cover transition-opacity hover:opacity-90"
+					/>
+				</div>
+			) : (
+				<div class="bg-quote/5 aspect-[8/3] flex items-center justify-center">
+					<span class="text-muted text-sm">No image</span>
+				</div>
+			)
+		}
+	</a>
+	<div class="flex flex-1 flex-col gap-2 p-4">
+		{draft && <span class="text-sm text-red-500">(Draft)</span>}
+		<h3 class="text-lg font-semibold">
+			<a class="cactus-link" href={href}>{title}</a>
+		</h3>
+		{
+			(platforms.length > 0 || genre.length > 0) && (
+				<div class="flex flex-wrap gap-1.5">
+					{platforms.map((p: string) => (
+						<span class="rounded border border-zinc-500/50 bg-zinc-600 px-2 py-0.5 text-xs text-zinc-100">{p}</span>
+					))}
+					{genre.map((g: string) => (
+						<span class="bg-quote/10 border-quote/25 rounded border px-2 py-0.5 text-xs">{g}</span>
+					))}
+				</div>
+			)
+		}
+		<p class="text-muted line-clamp-2 text-sm">{description}</p>
+	</div>
+</article>

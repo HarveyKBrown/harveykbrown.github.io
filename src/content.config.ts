@@ -56,4 +56,25 @@ const tag = defineCollection({
 	}),
 });
 
-export const collections = { post, note, tag };
+const project = defineCollection({
+	loader: glob({ base: "./src/content/project", pattern: "**/*.{md,mdx}" }),
+	schema: z.object({
+		title: z.string().max(60),
+		description: z.string(),
+		category: z.enum(["commercial", "unreleased", "additional"]),
+		platforms: z.array(z.string()).default([]),
+		genre: z.array(z.string()).default([]),
+		role: z.string(),
+		coverImage: z
+			.object({
+				alt: z.string(),
+				src: z.string(),
+			})
+			.optional(),
+		externalUrl: z.string().url().optional(),
+		draft: z.boolean().default(false),
+		order: z.number().int().optional(),
+	}),
+});
+
+export const collections = { post, note, tag, project };
