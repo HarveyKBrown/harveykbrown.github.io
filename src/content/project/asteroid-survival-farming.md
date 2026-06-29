@@ -34,4 +34,4 @@ I build an economy simulation tool in Godot that injested, checked and simulated
 
 I maintained a design bible meticulously outlining the economy plans, uncluding UML breakdowns of core economy algorithms and system archetecture for the server team, high level design documents to communicate the gameplay intentions to the team, and production lists to help the production team track requirements for internal and outsourced work.
 
-I participated in and ran "event storming" sessions where we broke down game features into server events and API calls, ensuring absolute clarity of design with the backend team. This was essential, as our backend team was very small, building a live service backend from scratch and needed to get the implementation right on the first pass or risk running out of time.
+I participated in and ran "event storming" sessions breaking down game features into server events and API calls, ensuring absolute clarity of design with the backend team. This was essential, as the backend team was very small, building a live service backend from scratch and needed to get the implementation right on the first pass or risk running out of time.

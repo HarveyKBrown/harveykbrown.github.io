@@ -69,6 +69,7 @@ const project = defineCollection({
 			.object({
 				alt: z.string(),
 				src: z.string(),
+				position: z.string().optional(),
 			})
 			.optional(),
 		video: z.string().optional(),

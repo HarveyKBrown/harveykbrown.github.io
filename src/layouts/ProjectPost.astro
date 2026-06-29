@@ -40,6 +40,7 @@ const categoryLabel = categoryLabels[category] ?? category;
 							alt={coverImage.alt}
 							src={coverImage.src}
 							class="h-full w-full object-cover"
+							style={coverImage.position ? `object-position: ${coverImage.position}` : undefined}
 						/>
 					</div>
 				)

@@ -9,13 +9,13 @@ coverImage:
   src: "/images/projects/broomstick.png"
   alt: "Broomstick cover image"
 video: "/videos/Harvey_Broomstick_Recording_1.mp4"
-order: 1
+order: -1
 draft: false
 ---
 
 I was handed this project while the studio was looking to rapidly proove out new concepts for their next game. I was given an early prototype of a broomstick control system, a team of 3-6 developers (some people where working across multiple projects), and 2 weeks to make it work as a standalone experience.
 
-My plan was to build the game into a spell-zapping racing game where players held the broom in one hand and wand in the other, whipping spells at other players to distrupt and slow them down. Lacking the time to implement multiplayer, we implemented the game as a timetrial system with people within the studio competing for the fasted times with each major pass of the movement controls.
+My plan was to build the game into a spell-zapping racing game where players held the broom in one hand and wand in the other, whipping spells at other players to distrupt and slow them down. Lacking the time to implement multiplayer, I implemented the game as a timetrial system with people within the studio competing for the fasted times with each major pass of the movement controls.
 
 Despite its positive receiption within the team, the studio was shut down soon after the prototype was complete.
 
