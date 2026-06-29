@@ -8,6 +8,7 @@ role: "Solo Developer"
 # coverImage:
 #   src: 
 #   alt: 
-order: 2
+order: 1
 draft: false
+#highlight: true
 ---

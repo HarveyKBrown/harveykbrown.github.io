@@ -11,6 +11,7 @@ coverImage:
 video: "/videos/Harvey_GunHands_Recording_1.mp4"
 order: 2
 draft: false
+highlight: true
 ---
 
 I was handed this project at a point where the studio was experimenting with novel VR mechanics and looking for their next game to work on. I was assinged 2 designers and a programmer, and part time support of 3D artists, VFX and SFX designers.

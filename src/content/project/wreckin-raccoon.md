@@ -11,6 +11,7 @@ coverImage:
 externalUrl: https://www.meta.com/en-gb/experiences/wreckin-raccoon/24256161264016457/
 order: -1
 draft: false
+highlight: true
 ---
 
 <div class="aspect-video overflow-hidden rounded">

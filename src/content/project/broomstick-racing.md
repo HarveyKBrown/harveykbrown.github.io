@@ -11,6 +11,7 @@ coverImage:
 video: "/videos/Harvey_Broomstick_Recording_1.mp4"
 order: -1
 draft: false
+highlight: true
 ---
 
 I was handed this project while the studio was looking to rapidly proove out new concepts for their next game. I was given an early prototype of a broomstick control system, a team of 3-6 developers (some people where working across multiple projects), and 2 weeks to make it work as a standalone experience.

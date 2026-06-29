@@ -11,6 +11,7 @@ coverImage:
 order: 1
 externalUrl: https://github.com/HarveyKBrown/GodotShaderLibrary
 draft: false
+highlight: true
 ---
 
 A personal library of Godot shader and visual effects that I started building in 2024 to learn and improve at various technical art and graphics programming skills.
