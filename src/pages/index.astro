@@ -54,12 +54,18 @@ const meta = {
 			</div>
 			<!-- Name -->
 			<div class="leading-[0.9]">
-				<p class="hero-name text-accent text-[8rem] uppercase sm:text-[6rem]">HARVEY BROWN</p>
+				<p
+					class="hero-name text-accent text-center text-[clamp(2rem,10vw,7rem)] whitespace-nowrap uppercase"
+				>
+					HARVEY BROWN
+				</p>
 			</div>
 			<!-- Divider + Specialisms -->
 			<div class="flex flex-col items-center gap-3">
-				<div class="bg-accent/70 h-0.5 w-86 shadow-lg dark:bg-[#E7E7F2]/70"></div>
-				<div class="flex items-center gap-4 text-sm font-semibold tracking-widest uppercase">
+				<div class="bg-accent/70 h-0.5 w-3/4 max-w-[21.5rem] shadow-lg dark:bg-[#E7E7F2]/70"></div>
+				<div
+					class="flex flex-wrap items-center justify-center gap-2 text-sm font-semibold tracking-wide uppercase sm:gap-4 sm:tracking-widest"
+				>
 					<span class="text-muted">Technical</span>
 					<span class="text-link">×</span>
 					<span class="text-muted">Gameplay</span>
@@ -73,13 +79,13 @@ const meta = {
 	<!-- CTAs -->
 	<div class="mb-16 flex flex-wrap justify-center gap-4">
 		<a
-			class="border-accent bg-accent text-global-bg hover:text-accent inline-block rounded border-2 px-4 py-1.5 font-semibold transition-colors duration-200 hover:bg-transparent"
+			class="border-accent bg-accent text-global-bg hover:text-accent inline-block rounded border-2 px-4 py-1.5 font-semibold shadow-lg transition-colors duration-200 hover:bg-transparent"
 			href="/projects/"
 		>
 			View My Projects <span aria-hidden="true">→</span>
 		</a>
 		<a
-			class="border-accent bg-accent text-global-bg hover:text-accent inline-block rounded border-2 px-4 py-1.5 font-semibold transition-colors duration-200 hover:bg-transparent"
+			class="border-accent bg-accent text-global-bg hover:text-accent inline-block rounded border-2 px-4 py-1.5 font-semibold shadow-lg transition-colors duration-200 hover:bg-transparent"
 			href="#contact"
 		>
 			Contact Me <span aria-hidden="true">→</span>
@@ -88,9 +94,12 @@ const meta = {
 
 	<!-- Accolades + Bio -->
 	<h2 class="title mb-6 text-xl">About Me</h2>
-	<div class="mt-8 grid grid-cols-[1fr_3fr] gap-4">
+	<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-[1fr_3fr]">
 		<!-- Accolades -->
-		<section aria-label="Career highlights" class="flex flex-col justify-between gap-4 text-center">
+		<section
+			aria-label="Career highlights"
+			class="flex flex-row justify-around gap-4 text-center sm:flex-col sm:justify-between"
+		>
 			<div>
 				<span class="title block text-4xl">7+</span>
 				<span class="text-muted mt-1 block text-sm">Years of Industry Experience</span>
@@ -100,7 +109,7 @@ const meta = {
 				<span class="text-muted mt-1 block text-sm">Games &amp; Expansions Shipped</span>
 			</div>
 			<div>
-				<span class="title block text-4xl">200m+</span>
+				<span class="title block text-4xl">200M+</span>
 				<span class="text-muted mt-1 block text-sm">Players Reached</span>
 			</div>
 		</section>
@@ -130,7 +139,7 @@ const meta = {
 		<h2 class="title mb-6 text-xl">Recommendations</h2>
 		<ul class="space-y-6" role="list">
 			<li
-				class="border-quote/35 hover:border-accent/60 rounded border p-4 transition-colors duration-200"
+				class="bg-global-bg/65 border-quote/35 hover:border-accent/60 rounded border p-4 shadow-lg transition-colors duration-200"
 			>
 				<details class="group">
 					<summary class="cursor-pointer list-none">
@@ -170,7 +179,7 @@ const meta = {
 			</li>
 
 			<li
-				class="border-quote/35 hover:border-accent/60 rounded border p-4 transition-colors duration-200"
+				class="bg-global-bg/65 border-quote/35 hover:border-accent/60 rounded border p-4 shadow-lg transition-colors duration-200"
 			>
 				<details class="group">
 					<summary class="cursor-pointer list-none">
@@ -214,7 +223,7 @@ const meta = {
 			</li>
 
 			<li
-				class="border-quote/35 hover:border-accent/60 rounded border p-4 transition-colors duration-200"
+				class="bg-global-bg/65 border-quote/35 hover:border-accent/60 rounded border p-4 shadow-lg transition-colors duration-200"
 			>
 				<details class="group">
 					<summary class="cursor-pointer list-none">
@@ -234,7 +243,7 @@ const meta = {
 							/>
 						</div>
 						<p class="rec-snippet text-muted mt-2 text-sm leading-relaxed group-open:hidden">
-							Exceptionally talented... his skills across feature, systems and AI work is exemplary
+							A top tier designer who is exceptionally talented.
 						</p>
 					</summary>
 					<blockquote class="rec-quote text-muted mt-4 space-y-3 text-sm leading-relaxed">
@@ -259,7 +268,7 @@ const meta = {
 			</li>
 
 			<li
-				class="border-quote/35 hover:border-accent/60 rounded border p-4 transition-colors duration-200"
+				class="bg-global-bg/65 border-quote/35 hover:border-accent/60 rounded border p-4 shadow-lg transition-colors duration-200"
 			>
 				<details class="group">
 					<summary class="cursor-pointer list-none">
