@@ -5,9 +5,9 @@ category: "unreleased"
 platforms: ["VR"]
 genre: ["Farming", "Survival", "Base Building", "Live Service", "Combat"]
 role: "Systems Designer"
-# coverImage:
-#   src:
-#   alt:
+coverImage:
+  src: "/images/projects/space_trader.png"
+  alt: "Asteroid Farming Game cover image"
 order: 4
 draft: false
 ---

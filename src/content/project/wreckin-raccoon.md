@@ -26,7 +26,7 @@ I worked on this project from its inception as Senior Game Designer with a techn
 
 ## Interaction Design
 
-I designed the emergent interaction subsystems that underpin the game's sandbox feel, and implemented dozens of individual interactive objects across the diner environment. The goal was a world where every object felt satisfying to manipulate and where interactions could combine in unscripted ways, with an aim to create a sandbox or playpit of toys for players to experiment with.
+I designed the emergent interaction subsystems that underpin the game's sandbox feel, and implemented dozens of individual interactive objects across the diner environment. The goal was to create an interactive "sandpit" filled with toys with interactions that combine in logically coherent and exciting ways. I started with an initial list of objects approved by the project directors and producer, and build out simple reusable components and interaction frameworks for each item. With each new interaction added, the objective was to make that interaction as effortlessly scalable across all future objects as possible. Having built out an initial list, I then worked with another designer to continue layering on more interactions and more objects using the implementation patterns that I had established.
 
 <div class="not-prose mt-4 grid grid-cols-2 gap-3">
   <img src="/images/raccoon_gifs/Arcade_InsertCoin_1.gif" alt="Inserting a coin into the arcade machine" />
