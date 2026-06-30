@@ -6,14 +6,14 @@ platforms: ["PC"]
 genre: ["Tool", "AI", "Godot", "Isometric"]
 role: "Solo Developer"
 coverImage:
-  src: "/images/projects/iso_shooter.png"
+  src: "/images/projects/iso_shooter_zoomed2.png"
   alt: "Isometric FPS Framework cover image"
 video: "/videos/isometric_shooter_anim_controller_and_combat.mp4"
 order: -1
 draft: false
 highlight: true
 ---
-
+Built as part of a team dev project to build an isometric extraction shooter, this project includes the sum of my personal code contributions to that project, and now forms the basis of a 3D isometric twinstick shooter template. The project includes controllers for bipedal animation rigs, a player controller, a framework for state based AI controllers, an event driven HUD implementation, equipment system and much more.
 
 # Features
 
