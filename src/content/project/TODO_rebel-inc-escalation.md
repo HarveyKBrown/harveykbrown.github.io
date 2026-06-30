@@ -9,7 +9,8 @@ coverImage:
   src: "/images/projects/rebel_inc.png"
   alt: "Rebel Inc: Escalation"
 externalUrl: "https://store.steampowered.com/app/1088790/Rebel_Inc_Escalation/"
-order: 1
+order: 10
 draft: false
+wip: true
 ---
 Work in Progress

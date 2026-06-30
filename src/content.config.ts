@@ -76,6 +76,7 @@ const project = defineCollection({
 		externalUrl: z.string().url().optional(),
 		draft: z.boolean().default(false),
 		highlight: z.boolean().default(false),
+		wip: z.boolean().default(false),
 		order: z.number().int().optional(),
 	}),
 });

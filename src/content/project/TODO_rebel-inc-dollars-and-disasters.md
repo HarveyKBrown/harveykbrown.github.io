@@ -9,7 +9,8 @@ coverImage:
   src: "/images/projects/satelite_scenario.png"
   alt: "Rebel Inc: Dollars and Disasters"
 externalUrl: https://store.steampowered.com/app/1747950/Rebel_Inc_Escalation__Dollars__Disasters/
-order: 4
+order: 11
 draft: false
+wip: true
 ---
 Work in Progress

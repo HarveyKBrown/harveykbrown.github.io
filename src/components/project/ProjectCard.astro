@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, description, platforms, genre, coverImage, draft, highlight } = project.data;
+const { title, description, platforms, genre, coverImage, draft, highlight, wip } = project.data;
 const href = `/projects/${project.id}/`;
 ---
 
@@ -15,10 +15,13 @@ const href = `/projects/${project.id}/`;
 		"bg-global-bg/65 flex h-full flex-col overflow-hidden rounded border shadow-lg transition-colors duration-200",
 		highlight
 			? "border-[#C85951]/70 hover:border-[#C85951]"
-			: "border-quote/20 hover:border-accent/60",
+			: wip
+				? "border-[#9898AC]/70 hover:border-[#9898AC]"
+				: "border-quote/20 hover:border-accent/60",
 	]}
 >
 	{highlight && <div class="h-1 w-full shrink-0 bg-[#C85951]" />}
+	{!highlight && wip && <div class="h-1 w-full shrink-0 bg-[#9898AC]" />}
 	<a href={href} class="relative block">
 		{
 			coverImage ? (
@@ -39,6 +42,13 @@ const href = `/projects/${project.id}/`;
 			highlight && (
 				<span class="text-global-bg absolute top-2 right-2 rounded bg-[#C85951] px-2 py-1 text-xs font-bold tracking-wide uppercase">
 					Featured
+				</span>
+			)
+		}
+		{
+			!highlight && wip && (
+				<span class="text-global-bg absolute top-2 right-2 rounded bg-[#9898AC] px-2 py-1 text-xs font-bold tracking-wide uppercase">
+					WIP
 				</span>
 			)
 		}
