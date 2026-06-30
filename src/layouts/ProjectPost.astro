@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
 import BaseLayout from "./Base.astro";
 
 interface Props {
@@ -68,12 +69,13 @@ const categoryLabel = categoryLabels[category] ?? category;
 			{
 				externalUrl && (
 					<a
-						class="border-accent text-accent hover:bg-accent hover:text-global-bg mt-6 inline-block rounded border-2 px-6 py-3 font-semibold transition-colors duration-200"
+						class="text-accent mt-6 inline-flex items-center gap-1.5 font-semibold underline underline-offset-2 hover:decoration-2"
 						href={externalUrl}
 						rel="noreferrer noopener"
 						target="_blank"
 					>
-						View Project <span aria-hidden="true">→</span>
+						View Project
+						<Icon aria-hidden="true" class="h-4 w-4 shrink-0" focusable="false" name="mdi:open-in-new" />
 					</a>
 				)
 			}
