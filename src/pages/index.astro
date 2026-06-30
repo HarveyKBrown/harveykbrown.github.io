@@ -29,48 +29,94 @@ const meta = {
 		font-weight: 700;
 		color: var(--color-muted);
 	}
+	.hero-name {
+		font-family: "Oswald", sans-serif;
+		font-weight: 700;
+		text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+	}
+	.hero-name-outline {
+		-webkit-text-stroke: 3px var(--color-accent);
+		color: transparent;
+	}
 </style>
 
 <PageLayout meta={meta}>
 	<!-- Hero -->
-	<section class="mb-8">
-		<p class="mb-1 text-lg">Senior Game Designer</p>
-		<p class="text-muted">Technical &times; Gameplay &times; Systems</p>
+	<section aria-label="Introduction" class="relative mb-16 overflow-hidden pt-4 pb-12">
+		<div class="flex min-w-0 flex-1 flex-col items-center justify-between gap-10">
+			<!-- Badge -->
+			<div>
+				<span
+					class="text-global-bg inline-block bg-[#C85951] px-4 py-1 text-sm font-bold tracking-widest uppercase shadow-lg"
+				>
+					Video Game Designer
+				</span>
+			</div>
+			<!-- Name -->
+			<div class="leading-[0.9]">
+				<p class="hero-name text-accent text-[8rem] uppercase sm:text-[6rem]">HARVEY BROWN</p>
+			</div>
+			<!-- Divider + Specialisms -->
+			<div class="flex flex-col items-center gap-3">
+				<div class="h-0.5 w-86 bg-[#E7E7F2]/70 shadow-lg"></div>
+				<div class="flex items-center gap-4 text-sm font-semibold tracking-widest uppercase">
+					<span class="text-muted">Technical</span>
+					<span class="text-link">×</span>
+					<span class="text-muted">Gameplay</span>
+					<span class="text-link">×</span>
+					<span class="text-muted">Systems</span>
+				</div>
+			</div>
+		</div>
 	</section>
 
-	<!-- Accolades -->
-	<section aria-label="Career highlights" class="mt-8 grid grid-cols-3 gap-4 text-center">
-		<div>
-			<span class="title block text-4xl">7+</span>
-			<span class="text-muted mt-1 block text-sm">Years of Industry Experience</span>
-		</div>
-		<div>
-			<span class="title block text-4xl">8+</span>
-			<span class="text-muted mt-1 block text-sm">Games &amp; Expansions Shipped</span>
-		</div>
-		<div>
-			<span class="title block text-4xl">200m+</span>
-			<span class="text-muted mt-1 block text-sm">Players Reached</span>
-		</div>
-	</section>
+	<!-- Projects CTA -->
+	<div class="mb-16 text-center">
+		<a
+			class="border-accent text-accent hover:bg-accent hover:text-global-bg inline-block rounded border-2 px-6 py-3 font-semibold transition-colors duration-200"
+			href="/projects/"
+		>
+			View My Projects <span aria-hidden="true">→</span>
+		</a>
+	</div>
 
-	<!-- Bio -->
-	<div
-		class="prose prose-sm prose-cactus border-quote/30 mt-8 max-w-none rounded border border-dashed p-4"
-	>
-		<p>
-			I'm a Senior Game Designer with a cross-disciplinary background spanning Systems, Game, and
-			Technical Design — with the technical experience to go hands-on across 3D, VFX, graphics
-			programming, and software engineering when a project calls for it.
-		</p>
-		<p>
-			I've led feature and prototyping teams, served as product owner for major gameplay systems and
-			original titles, and shipped best-selling games across PC, Console, Mobile, and VR.
-		</p>
-		<p>
-			At the core of my work is a drive to create experiences with intuitive gameplay, compelling
-			core loops, deep mechanical depth, and a distinctive charm.
-		</p>
+	<!-- Accolades + Bio -->
+	<h2 class="title mb-6 text-xl">About Me</h2>
+	<div class="mt-8 grid grid-cols-[1fr_3fr] gap-4">
+		<!-- Accolades -->
+		<section aria-label="Career highlights" class="flex flex-col justify-between gap-4 text-center">
+			<div>
+				<span class="title block text-4xl">7+</span>
+				<span class="text-muted mt-1 block text-sm">Years of Industry Experience</span>
+			</div>
+			<div>
+				<span class="title block text-4xl">8+</span>
+				<span class="text-muted mt-1 block text-sm">Games &amp; Expansions Shipped</span>
+			</div>
+			<div>
+				<span class="title block text-4xl">200m+</span>
+				<span class="text-muted mt-1 block text-sm">Players Reached</span>
+			</div>
+		</section>
+
+		<!-- Bio -->
+		<div
+			class="prose prose-sm prose-cactus border-quote/30 max-w-none rounded border border-dashed p-4"
+		>
+			<p>
+				I'm a Senior Game Designer with a cross-disciplinary background spanning Systems, Game, and
+				Technical Design — with the technical experience to go hands-on across 3D, VFX, graphics
+				programming, and software engineering when a project calls for it.
+			</p>
+			<p>
+				I've led feature and prototyping teams, served as product owner for major gameplay systems
+				and original titles, and shipped best-selling games across PC, Console, Mobile, and VR.
+			</p>
+			<p>
+				At the core of my work is a drive to create experiences with intuitive gameplay, compelling
+				core loops, deep mechanical depth, and a distinctive charm.
+			</p>
+		</div>
 	</div>
 
 	<!-- Recommendations -->
@@ -254,16 +300,6 @@ const meta = {
 			</li>
 		</ul>
 	</section>
-
-	<!-- Projects CTA -->
-	<div class="mt-16 text-center">
-		<a
-			class="border-accent text-accent hover:bg-accent hover:text-global-bg inline-block rounded border-2 px-6 py-3 font-semibold transition-colors duration-200"
-			href="/projects/"
-		>
-			View My Projects <span aria-hidden="true">→</span>
-		</a>
-	</div>
 
 	<!-- Skills -->
 	<section class="mt-16">

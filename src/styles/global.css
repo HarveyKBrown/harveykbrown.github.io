@@ -16,7 +16,7 @@
 @property --color-global-bg {
 	syntax: "<color>";
 	inherits: true;
-	initial-value: oklch(98.48% 0 0);
+	initial-value: #c7c7d2;
 }
 @property --color-global-text {
 	syntax: "<color>";
@@ -51,7 +51,7 @@
 
 /* you could refactor below to use light-dark(), depending on your target audience */
 @theme {
-	--color-global-bg: oklch(98.48% 0 0);
+	--color-global-bg: #c7c7d2;
 	--color-global-text: oklch(26.99% 0.0096 235.05);
 	--color-muted: oklch(44.6% 0.03 256.802);
 	--color-link: oklch(55.44% 0.0431 185.69);
@@ -62,6 +62,7 @@
 
 @layer base {
 	html {
+		font-size: 120%;
 		color-scheme: light dark;
 		accent-color: var(--color-accent);
 		scrollbar-gutter: stable;
@@ -72,7 +73,7 @@
 
 		&[data-theme="dark"] {
 			color-scheme: dark;
-			--color-global-bg: oklch(23.64% 0.0045 248);
+			--color-global-bg: #2e2c2f;
 			--color-global-text: oklch(83.54% 0 264);
 			--color-muted: oklch(70.7% 0.022 261.325);
 			--color-link: oklch(70.44% 0.1133 349);
@@ -125,6 +126,12 @@
 
 	.title {
 		@apply text-accent-2 text-2xl font-semibold;
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+	}
+
+	h2.title {
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid rgba(199, 199, 210, 0.25);
 	}
 }
 

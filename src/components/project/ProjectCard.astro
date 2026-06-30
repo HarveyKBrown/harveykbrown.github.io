@@ -14,11 +14,11 @@ const href = `/projects/${project.id}/`;
 	class:list={[
 		"bg-quote/5 flex h-full flex-col overflow-hidden rounded border transition-colors duration-200",
 		highlight
-			? "border-accent/70 hover:border-accent/60 dark:border-[#CFCCA9]/70 dark:hover:border-accent/60"
+			? "border-[#C85951]/70 hover:border-[#C85951]"
 			: "border-quote/20 hover:border-accent/60",
 	]}
 >
-	{highlight && <div class="bg-accent dark:bg-[#CFCCA9] h-1 w-full shrink-0" />}
+	{highlight && <div class="h-1 w-full shrink-0 bg-[#C85951]" />}
 	<a href={href} class="relative block">
 		{
 			coverImage ? (
@@ -37,7 +37,7 @@ const href = `/projects/${project.id}/`;
 		}
 		{
 			highlight && (
-				<span class="text-global-bg bg-accent dark:bg-[#CFCCA9] absolute top-2 right-2 rounded px-2 py-1 text-xs font-bold tracking-wide uppercase">
+				<span class="text-global-bg absolute top-2 right-2 rounded bg-[#C85951] px-2 py-1 text-xs font-bold tracking-wide uppercase">
 					Featured
 				</span>
 			)
