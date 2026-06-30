@@ -21,6 +21,7 @@ void main(){ gl_Position=vec4(a_pos,0.,1.); }`;
 	const FS = `precision highp float;
 uniform vec2  u_res;
 uniform float u_time;
+uniform float u_dark;  // 1.0 = dark mode, 0.0 = light mode
 
 const float CELL = 60.0;
 
@@ -62,23 +63,30 @@ void main(){
   // hard threshold to 3 levels: 0, 0.5, 1
   float level = step(0.7, n) * 0.5 + step(0.8, n) * 0.3 + 0.2;
 
-  //vec3 trench = vec3(0.130,0.122,0.133);
-  vec3 trench  = vec3(0.155, 0.147, 0.1585);
-  vec3 ridge  = vec3(0.180,0.172,0.184);
-  vec3 squareCol = mix(trench, ridge, level);
+  // dark mode palette: squares darker than bg
+  vec3 d_gap    = vec3(0.180, 0.172, 0.184);   // #2E2C2F
+  vec3 d_trench = vec3(0.155, 0.147, 0.1585);  // darker squares
+
+  // light mode palette: squares darker than bg
+  vec3 l_gap    = vec3(0.780, 0.780, 0.824);   // #C7C7D2
+  vec3 l_trench = vec3(0.736, 0.736, 0.778);   // darker squares
+
+  vec3 gap    = mix(l_gap,    d_gap,    u_dark);
+  vec3 trench = mix(l_trench, d_trench, u_dark);
+  vec3 squareCol = mix(trench, gap, level);
 
   // rounded square SDF: 80% cell fill, corner radius 0.10
   vec2 q = abs(cellUV) - vec2(0.30);
   float d = length(max(q,0.0)) + min(max(q.x,q.y),0.0) - 0.10;
   float inside = smoothstep(0.03,-0.03,d);
 
-  // gap between squares shows the ridge (page bg) color
-  vec3 col = mix(ridge, squareCol, inside);
+  // gap between squares shows the page bg color
+  vec3 col = mix(gap, squareCol, inside);
 
   // hard column mask: mute pattern in center where content sits
   vec2 uv = fc / u_res;
   float inCenter = 1.0 - step(0.5, abs(uv.x - 0.5) * 2.0);
-  col = mix(col, ridge, inCenter * 0.3);
+  col = mix(col, gap, inCenter * 0.3);
 
   gl_FragColor=vec4(col,1.);
 }`;
@@ -131,7 +139,8 @@ void main(){
 		gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
 		const uTime = gl.getUniformLocation(prog, "u_time");
-		const uRes = gl.getUniformLocation(prog, "u_res");
+		const uRes  = gl.getUniformLocation(prog, "u_res");
+		const uDark = gl.getUniformLocation(prog, "u_dark");
 
 		function resize() {
 			canvas!.width = window.innerWidth;
@@ -141,15 +150,15 @@ void main(){
 		resize();
 		window.addEventListener("resize", resize);
 
-		function updateVisibility() {
+		function updateTheme() {
 			const isDark =
 				document.documentElement.dataset.theme === "dark" ||
 				(!document.documentElement.dataset.theme &&
 					window.matchMedia("(prefers-color-scheme: dark)").matches);
-			canvas!.style.opacity = isDark ? "1" : "0";
+			gl!.uniform1f(uDark, isDark ? 1.0 : 0.0);
 		}
-		updateVisibility();
-		new MutationObserver(updateVisibility).observe(document.documentElement, {
+		updateTheme();
+		new MutationObserver(updateTheme).observe(document.documentElement, {
 			attributes: true,
 			attributeFilter: ["data-theme"],
 		});
