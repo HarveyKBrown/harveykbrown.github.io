@@ -1,10 +1,24 @@
 ---
 import { Icon } from "astro-icon/components";
+import StructuredData from "@/components/StructuredData.astro";
 import PageLayout from "@/layouts/Base.astro";
+import { siteConfig } from "@/site.config";
 
 const meta = {
-	description: "Video Game Design portfolio for Harvey Brown — Senior Game Designer",
+	description:
+		"Portfolio of Harvey Brown, a Senior Game Designer specialising in Systems, Gameplay, and Technical Design — 7+ years shipping best-selling games across PC, Console, Mobile, and VR.",
 	title: "Harvey Brown",
+};
+
+const personSchema = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: siteConfig.author,
+	url: siteConfig.url,
+	jobTitle: "Senior Game Designer",
+	description: meta.description,
+	image: new URL("/social-card.png", siteConfig.url).href,
+	sameAs: ["https://www.linkedin.com/in/harveykbrown/", "https://github.com/HarveyKBrown"],
 };
 ---
 
@@ -41,6 +55,7 @@ const meta = {
 </style>
 
 <PageLayout meta={meta}>
+	<StructuredData data={personSchema} />
 	<!-- Hero -->
 	<section aria-label="Introduction" class="relative mb-16 overflow-hidden pt-4 pb-12">
 		<div class="flex min-w-0 flex-1 flex-col items-center justify-between gap-10">
@@ -54,11 +69,11 @@ const meta = {
 			</div>
 			<!-- Name -->
 			<div class="leading-[0.9]">
-				<p
+				<h1
 					class="hero-name text-accent whitespace text-center text-[clamp(2rem,22vw,6rem)] uppercase"
 				>
 					HARVEY BROWN
-				</p>
+				</h1>
 			</div>
 			<!-- Divider + Specialisms -->
 			<div class="flex flex-col items-center gap-3">

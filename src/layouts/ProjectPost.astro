@@ -1,6 +1,8 @@
 ---
 import { type CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
+import StructuredData from "@/components/StructuredData.astro";
+import { siteConfig } from "@/site.config";
 import BaseLayout from "./Base.astro";
 
 interface Props {
@@ -17,9 +19,27 @@ const categoryLabels: Record<string, string> = {
 	additional: "Additional Projects",
 };
 const categoryLabel = categoryLabels[category] ?? category;
+
+const projectUrl = new URL(`/projects/${project.id}/`, siteConfig.url).href;
+const projectSchema = {
+	"@context": "https://schema.org",
+	"@type": "CreativeWork",
+	name: title,
+	description,
+	url: projectUrl,
+	creator: {
+		"@type": "Person",
+		name: siteConfig.author,
+		url: siteConfig.url,
+	},
+	...(coverImage && { image: new URL(coverImage.src, siteConfig.url).href }),
+	...(platforms.length > 0 && { keywords: [...platforms, ...genre].join(", ") }),
+	...(genre.length > 0 && { genre }),
+};
 ---
 
 <BaseLayout meta={{ title, description }}>
+	<StructuredData data={projectSchema} />
 	<article class="grow break-words" data-pagefind-body>
 		<div id="project-hero" class="mb-12">
 			{
@@ -42,6 +62,9 @@ const categoryLabel = categoryLabels[category] ?? category;
 							src={coverImage.src}
 							class="h-full w-full object-cover"
 							style={coverImage.position ? `object-position: ${coverImage.position}` : undefined}
+							loading="eager"
+							fetchpriority="high"
+							decoding="async"
 						/>
 					</div>
 				)

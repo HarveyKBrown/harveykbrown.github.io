@@ -30,6 +30,8 @@ const href = `/projects/${project.id}/`;
 						alt={coverImage.alt}
 						src={coverImage.src}
 						class="h-full w-full object-cover transition-opacity hover:opacity-90"
+						loading="lazy"
+						decoding="async"
 					/>
 				</div>
 			) : (
