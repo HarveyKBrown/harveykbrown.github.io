@@ -164,7 +164,9 @@ void main(){
 		});
 
 		let raf: number;
-		let time = 0;
+
+		const daySeconds = (Date.now() / 1000) % 86400;
+		let time = daySeconds * 0.08;
 		let lastTs = 0;
 
 		function render(ts: number) {
