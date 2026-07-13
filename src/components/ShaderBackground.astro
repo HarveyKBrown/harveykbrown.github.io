@@ -22,6 +22,7 @@ void main(){ gl_Position=vec4(a_pos,0.,1.); }`;
 uniform vec2  u_res;
 uniform float u_time;
 uniform float u_dark;  // 1.0 = dark mode, 0.0 = light mode
+uniform float u_contentWidth; // px width of the centered content column
 
 const float CELL = 60.0;
 
@@ -65,11 +66,11 @@ void main(){
 
   // dark mode palette: squares darker than bg
   vec3 d_gap    = vec3(0.180, 0.172, 0.184);   // #2E2C2F
-  vec3 d_trench = vec3(0.155, 0.147, 0.1585);  // darker squares
+  vec3 d_trench = vec3(0.135, 0.127, 0.1385);  // darker squares
 
   // light mode palette: squares darker than bg
   vec3 l_gap    = vec3(0.780, 0.780, 0.824);   // #C7C7D2
-  vec3 l_trench = vec3(0.736, 0.736, 0.778);   // darker squares
+  vec3 l_trench = vec3(0.636, 0.636, 0.678);   // darker squares
 
   vec3 gap    = mix(l_gap,    d_gap,    u_dark);
   vec3 trench = mix(l_trench, d_trench, u_dark);
@@ -78,15 +79,18 @@ void main(){
   // rounded square SDF: 80% cell fill, corner radius 0.10
   vec2 q = abs(cellUV) - vec2(0.30);
   float d = length(max(q,0.0)) + min(max(q.x,q.y),0.0) - 0.10;
-  float inside = smoothstep(0.03,-0.03,d);
+  float inside = smoothstep(0.02,-0.02,d);
 
   // gap between squares shows the page bg color
   vec3 col = mix(gap, squareCol, inside);
 
-  // hard column mask: mute pattern in center where content sits
-  vec2 uv = fc / u_res;
-  float inCenter = 1.0 - step(0.5, abs(uv.x - 0.5) * 2.0);
-  col = mix(col, gap, inCenter * 0.3);
+  // column mask: mute pattern behind the actual centered content column,
+  // with a thick soft-edged falloff instead of a hard cutoff
+  float halfW = u_contentWidth * 0.5;
+  float feather = 160.0;
+  float distFromCenter = abs(fc.x - u_res.x * 0.5);
+  float inCenter = 1.0 - smoothstep(halfW - feather, halfW + feather, distFromCenter);
+  col = mix(col, gap, inCenter * 0.65);
 
   gl_FragColor=vec4(col,1.);
 }`;
@@ -141,11 +145,14 @@ void main(){
 		const uTime = gl.getUniformLocation(prog, "u_time");
 		const uRes = gl.getUniformLocation(prog, "u_res");
 		const uDark = gl.getUniformLocation(prog, "u_dark");
+		const uContentWidth = gl.getUniformLocation(prog, "u_contentWidth");
 
 		function resize() {
 			canvas!.width = window.innerWidth;
 			canvas!.height = window.innerHeight;
 			gl!.viewport(0, 0, canvas!.width, canvas!.height);
+			const contentWidth = document.body.getBoundingClientRect().width;
+			gl!.uniform1f(uContentWidth, contentWidth);
 		}
 		resize();
 		window.addEventListener("resize", resize);
@@ -172,7 +179,7 @@ void main(){
 		function render(ts: number) {
 			const dt = Math.min((ts - lastTs) / 1000, 0.1);
 			lastTs = ts;
-			time += dt * 0.08;
+			time += dt * 0.125;
 			gl!.uniform1f(uTime, time);
 			gl!.uniform2f(uRes, canvas!.width, canvas!.height);
 			gl!.drawArrays(gl!.TRIANGLE_STRIP, 0, 4);
